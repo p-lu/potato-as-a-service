@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Recipe } from "../types/potato";
+import RecipeCard from "@/components/RecipeCard";
+import styled from "@emotion/styled";
 
 export default function Potato(): JSX.Element {
   const [recipe, setRecipe] = useState<Recipe | undefined>();
@@ -19,26 +21,16 @@ export default function Potato(): JSX.Element {
     return data.json();
   };
 
+  const Container = styled.div`
+    max-width: 1200px;
+    margin: 1rem auto;
+    text-align: center;
+  `;
+
   return (
-    <>
+    <Container>
       <h1>Potato as a Service</h1>
-      <h2>{recipe?.recipe_name}</h2>
-      <h3>Ingredients:</h3>
-      <ul>
-        {recipe?.ingredients.map((ingredient) => {
-          return (
-            <li key={ingredient.ingredient_name}>
-              {ingredient.ingredient_name}
-            </li>
-          );
-        })}
-      </ul>
-      <h3>Instructions:</h3>
-      <ol>
-        {recipe?.instructions.map((instruction) => {
-          return <li key={instruction}>{instruction}</li>;
-        })}
-      </ol>
-    </>
+      {recipe && <RecipeCard recipe={recipe} />}
+    </Container>
   );
 }

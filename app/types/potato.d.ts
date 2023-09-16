@@ -1,7 +1,7 @@
 export type Recipe = {
   recipe_name: string;
   ingredients: Ingredient[];
-  instructions: string[];
+  instructions: Instruction[];
 };
 
 export type Ingredient = {
@@ -10,3 +10,5 @@ export type Ingredient = {
   unit: string;
   preparation: string;
 };
+
+export type Instruction = string;
